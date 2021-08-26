@@ -1,0 +1,116 @@
+<template>
+    <section class="movie-reel w-full flex flex-col pt-8 relative">
+        <div class="movie-reel__header flex justify-start items-center px-10">
+            <h2 class="mr-5" v-text="label"></h2>
+            <div class="selector flex content-center">
+                <ReelAnchor
+                    v-for="(anchor, index) in anchors"
+                    :index="index"
+                    v-on:filterResults="handleAnchorClick"
+                    :key="index"
+                    v-bind:label="anchor.label"
+                    v-bind:group="anchor.group"
+                    v-bind:selected="activeIndex === index ? true : false"
+                />
+            </div>
+        </div>
+        <div
+            class="
+                movie-reel__list
+                w-full
+                flex
+                overflow-x-scroll overflow-y-hidden
+                py-5
+            "
+            v-if="results"
+        >
+            <ReelCard
+                v-for="result in results"
+                :key="result?.id"
+                :item="result"
+            />
+        </div>
+    </section>
+</template>
+
+<script>
+import ReelAnchor from './ReelAnchor.vue'
+import ReelCard from './ReelCard.vue'
+
+import { axiosGet } from '../../axiosGet'
+export default {
+    name: 'MovieReel',
+    components: { ReelAnchor, ReelCard },
+    props: {
+        label: String,
+        anchors: {
+            type: Array,
+            required: true,
+        },
+        path: {
+            type: String,
+            required: true,
+        },
+    },
+    data() {
+        return {
+            activeIndex: 0,
+            results: null,
+        }
+    },
+    methods: {
+        handleAnchorClick: function (e, index) {
+            e.preventDefault()
+            this.activeIndex = index
+            const path = e.currentTarget.dataset.group
+            axiosGet(import.meta.env.VITE_API_URL + path, {
+                api_key: import.meta.env.VITE_API_KEY,
+            }).then((data) => {
+                if (data.results) {
+                    this.results = data.results
+                    return
+                }
+                this.results = [data]
+            })
+        },
+    },
+
+    mounted() {
+        axiosGet(import.meta.env.VITE_API_URL + this.path, {
+            api_key: import.meta.env.VITE_API_KEY,
+        }).then((data) => {
+            if (data.results) {
+                this.results = data.results
+                console.log(data.results)
+                return
+            }
+            this.results = [data]
+        })
+    },
+}
+</script>
+
+<style lang="scss">
+.selector {
+    border: 1px solid rgba(3, 37, 65, 1);
+    border-radius: 30px;
+}
+
+.movie-reel {
+    &:after {
+        content: '';
+        width: 60px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            #fff 100%
+        );
+        will-change: opacity;
+        pointer-events: none;
+    }
+}
+</style>
