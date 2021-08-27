@@ -1,5 +1,8 @@
 <template>
-    <section class="movie-reel w-full flex flex-col pt-8 relative">
+    <section
+        class="movie-reel w-full flex flex-col pt-8 relative"
+        :class="isTrending && 'trending'"
+    >
         <div class="movie-reel__header flex justify-start items-center px-10">
             <h2 class="mr-5" v-text="label"></h2>
             <div class="selector flex content-center">
@@ -53,6 +56,7 @@ export default {
             type: String,
             required: true,
         },
+        isTrending: Boolean,
     },
     data() {
         return {
@@ -119,6 +123,13 @@ export default {
         will-change: opacity;
         pointer-events: none;
     }
+}
+
+.movie-reel.trending {
+    background-image: url('https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39afc2a5f77e31d469b25c187814c0a2efef225494c038098d62317d923f8415.svg');
+    background-position: 50% 200px;
+    // background-size: var(--maxPrimaryPageWidth);
+    background-repeat: no-repeat;
 }
 
 .fade-enter-active,
