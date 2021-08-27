@@ -26,7 +26,7 @@
                         w-full
                         flex
                         overflow-x-scroll overflow-y-hidden
-                        py-5
+                        pt-5
                     "
                 >
                     <TrailerCard
@@ -75,7 +75,10 @@ export default {
 <style lang="scss">
 .trailer-reel {
     background-image: url('../assets/casa-papel.jpg');
-    margin-bottom: 200px;
+    min-height: 400px;
+    .selector {
+        border: 1px solid rgba(30, 213, 169, 1);
+    }
     &::after {
         content: none;
     }
@@ -88,9 +91,5 @@ export default {
             rgba(3, 37, 65, 0.75) 100%
         );
     }
-}
-
-.selector {
-    border: 1px solid rgba(30, 213, 169, 1);
 }
 </style>

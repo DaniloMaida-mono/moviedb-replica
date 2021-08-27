@@ -13,6 +13,12 @@
             path="/tv/on_the_air"
         />
         <TrailerReel label="Ultimi Trailers" v-bind:anchors="reels.trailers" />
+        <MovieReel
+            label="In Tendenza"
+            v-bind:anchors="reels.trending"
+            path="/trending/all/day"
+            :isTrending="true"
+        />
     </main>
 </template>
 
@@ -71,6 +77,16 @@ export default {
                     {
                         label: 'Al Cinema',
                         group: '/movie/now_playing',
+                    },
+                ],
+                trending: [
+                    {
+                        label: 'Oggi',
+                        group: '/trending/all/day',
+                    },
+                    {
+                        label: 'Questa Settimana',
+                        group: '/trending/all/week',
                     },
                 ],
             },
