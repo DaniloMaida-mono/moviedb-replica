@@ -14,22 +14,24 @@
                 />
             </div>
         </div>
-        <div
-            class="
-                movie-reel__list
-                w-full
-                flex
-                overflow-x-scroll overflow-y-hidden
-                py-5
-            "
-            v-if="results"
-        >
-            <ReelCard
-                v-for="result in results"
-                :key="result?.id"
-                :item="result"
-            />
-        </div>
+        <transition name="fade">
+            <div
+                class="
+                    movie-reel__list
+                    w-full
+                    flex
+                    overflow-x-scroll overflow-y-hidden
+                    py-5
+                "
+                v-if="results && showReel"
+            >
+                <ReelCard
+                    v-for="result in results"
+                    :key="result?.id"
+                    :item="result"
+                />
+            </div>
+        </transition>
     </section>
 </template>
 
@@ -56,17 +58,21 @@ export default {
         return {
             activeIndex: 0,
             results: null,
+            showReel: true,
         }
     },
     methods: {
         handleAnchorClick: function (e, index) {
             e.preventDefault()
             this.activeIndex = index
+            this.showReel = false
             const path = e.currentTarget.dataset.group
             axiosGet(import.meta.env.VITE_API_URL + path, {
                 api_key: import.meta.env.VITE_API_KEY,
+                language: 'it-IT',
             }).then((data) => {
                 if (data.results) {
+                    this.showReel = true
                     this.results = data.results
                     return
                 }
@@ -78,6 +84,7 @@ export default {
     mounted() {
         axiosGet(import.meta.env.VITE_API_URL + this.path, {
             api_key: import.meta.env.VITE_API_KEY,
+            language: 'it-IT',
         }).then((data) => {
             if (data.results) {
                 this.results = data.results
@@ -112,5 +119,13 @@ export default {
         will-change: opacity;
         pointer-events: none;
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }
 </style>
