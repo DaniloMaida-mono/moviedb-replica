@@ -2,7 +2,7 @@
     <div
         class="anchor"
         :data-group="group"
-        :class="selected ? 'selected' : ''"
+        :class="[selected ? 'selected' : '', contrast ? 'contrast' : '']"
         v-on:click="$emit('filterResults', $event, index)"
     >
         <h3 class="">
@@ -30,6 +30,9 @@ export default {
             type: Number,
             required: true,
         },
+        contrast: {
+            type: Boolean,
+        },
     },
 }
 </script>
@@ -56,6 +59,23 @@ export default {
 
     a {
         background: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.anchor.contrast {
+    h3 {
+        color: #fff;
+    }
+}
+.anchor.contrast.selected {
+    background: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+    border-radius: 30px;
+
+    a {
+        background: rgba($blue, 1);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

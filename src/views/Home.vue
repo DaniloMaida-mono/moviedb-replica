@@ -10,8 +10,9 @@
         <MovieReel
             label="Visione Gratuita"
             v-bind:anchors="reels.freeVision"
-            path="/movie/popular"
+            path="/tv/on_the_air"
         />
+        <TrailerReel label="Ultimi Trailers" v-bind:anchors="reels.trailers" />
     </main>
 </template>
 
@@ -19,9 +20,10 @@
 import Header from '../components/Header.vue'
 import SearchBox from '../components/SearchBox.vue'
 import MovieReel from '../components/MovieReel.vue'
+import TrailerReel from '../components/TrailerReel.vue'
 export default {
     name: 'Home',
-    components: { Header, SearchBox, MovieReel },
+    components: { Header, SearchBox, MovieReel, TrailerReel },
     data() {
         return {
             reels: {
@@ -46,11 +48,29 @@ export default {
                 freeVision: [
                     {
                         label: 'Films',
-                        group: '/movie/popular',
+                        group: '/tv/on_the_air',
                     },
                     {
                         label: 'Serie TV',
                         group: '/tv/popular',
+                    },
+                ],
+                trailers: [
+                    {
+                        label: 'Streaming',
+                        group: '/movie/popular',
+                    },
+                    {
+                        label: 'In TV',
+                        group: '/tv/popular',
+                    },
+                    {
+                        label: 'A noleggio',
+                        group: '/tv/on_the_air',
+                    },
+                    {
+                        label: 'Al Cinema',
+                        group: '/movie/now_playing',
                     },
                 ],
             },
