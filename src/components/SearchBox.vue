@@ -47,10 +47,6 @@ export default {
     justify-content: flex-start;
 }
 
-.content-wrapper {
-    padding: 30px 40px;
-}
-
 .title {
     margin-bottom: 20px;
     h1 {
