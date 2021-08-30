@@ -1,5 +1,8 @@
 <template>
-    <section class="movie-reel trailer-reel w-full flex flex-col relative">
+    <section
+        class="movie-reel trailer-reel w-full flex flex-col relative"
+        v-bind:style="{ backgroundImage: 'url(' + sectionBgUrl + ')' }"
+    >
         <div class="wrapper pt-8">
             <div
                 class="movie-reel__header flex justify-start items-center px-10"
@@ -33,12 +36,16 @@
                         bg="https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/na2xUduK8HviOFT97TiFG2MkJmY.jpg"
                         title="Raised by Wolves – Una nuova umanità"
                         desc="Raised by Wolves – Una nuova umanità | Nuova serie | Trailer"
+                        overBg="/src/assets/raised-wolves.jpg"
+                        v-on:overCard="handleOverCard"
                     />
                     >
                     <TrailerCard
                         bg="https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/xGexTKCJDkl12dTW4YCBDXWb1AD.jpg"
                         title="La casa di carta"
                         desc="La casa di carta - Terza parte | Trailer ufficiale | Netflix"
+                        overBg="/src/assets/casa-papel.jpg"
+                        v-on:overCard="handleOverCard"
                     />
                 </div>
             </transition>
@@ -62,6 +69,7 @@ export default {
     data() {
         return {
             activeIndex: 0,
+            sectionBgUrl: '/src/assets/raised-wolves.jpg',
         }
     },
     methods: {
@@ -69,12 +77,20 @@ export default {
             e.preventDefault()
             this.activeIndex = index
         },
+
+        handleOverCard: function (e, bgUrl) {
+            console.log(bgUrl)
+            this.sectionBgUrl = bgUrl
+        },
     },
 }
 </script>
 <style lang="scss">
 .trailer-reel {
-    background-image: url('../assets/casa-papel.jpg');
+    transition: all 0.5s;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
     min-height: 400px;
     .selector {
         border: 1px solid rgba(30, 213, 169, 1);
