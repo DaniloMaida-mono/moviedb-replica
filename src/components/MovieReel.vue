@@ -1,6 +1,6 @@
 <template>
     <section
-        class="movie-reel w-full flex flex-col pt-8 relative"
+        class="movie-reel should-fade w-full flex flex-col pt-8 relative"
         :class="isTrending && 'trending'"
     >
         <div class="movie-reel__header flex justify-start items-center px-10">
@@ -104,24 +104,6 @@ export default {
 .selector {
     border: 1px solid rgba(3, 37, 65, 1);
     border-radius: 30px;
-}
-
-.movie-reel {
-    &:after {
-        content: '';
-        width: 60px;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-image: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0) 0%,
-            #fff 100%
-        );
-        will-change: opacity;
-        pointer-events: none;
-    }
 }
 
 .movie-reel.trending {

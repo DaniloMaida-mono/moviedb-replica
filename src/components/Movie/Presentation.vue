@@ -4,7 +4,7 @@
         class="movie-details w-full text-white"
         v-bind:style="{ backgroundImage: 'url(' + posterBg + ')' }"
     >
-        <div class="blend h-full w-full">
+        <div class="blend h-full w-full flex justify-center">
             <div class="content-wrapper h-full w-full flex items-center">
                 <div class="movie-poster">
                     <div class="movie-image w-full">
@@ -162,6 +162,7 @@ export default {
 }
 .content-wrapper {
     padding: 30px 40px;
+    max-width: 1400px;
 }
 
 .movie-poster {

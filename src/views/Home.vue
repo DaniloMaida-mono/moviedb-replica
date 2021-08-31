@@ -100,5 +100,7 @@ export default {
 <style>
 .content-wrapper {
     padding: 30px 40px;
+    max-width: 1400px;
+    width: 100%;
 }
 </style>

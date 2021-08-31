@@ -3,6 +3,14 @@
     <main>
         <div class="movie-container w-full h-full">
             <Presentation :item="item" />
+            <div class="w-full flex justify-center">
+                <div class="content-wrapper flex">
+                    <div class="main-column flex flex-wrap">
+                        <CastReel />
+                    </div>
+                    <div class="side-column flex flex-wrap"></div>
+                </div>
+            </div>
         </div>
     </main>
 </template>
@@ -10,10 +18,11 @@
 <script>
 import Header from '../components/Header.vue'
 import Presentation from '../components/Movie/Presentation.vue'
+import CastReel from '../components/Movie/CastReel.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
-    components: { Header, Presentation },
+    components: { Header, Presentation, CastReel },
     data() {
         return {
             item: {},
@@ -33,5 +42,29 @@ export default {
     },
 }
 </script>
+
+<style lang="scss">
+.main-column {
+    width: calc(1400px - 80px - 268px);
+    padding-right: 30px;
+    flex: 0 1 auto;
+
+    h3 {
+        font-size: 1.4em;
+    }
+}
+
+.side-column {
+    min-width: 260px;
+    width: 260px;
+}
+
+.panel {
+    border-top: 1px solid #d7d7d7;
+    &:first-of-type {
+        border-top: none;
+    }
+}
+</style>
 
 
