@@ -1,42 +1,16 @@
 <template>
     <div class="card flex flex-wrap">
         <div class="card-image relative">
-            <div class="rating text-white">
-                <div class="outer-ring relative">
-                    <span
-                        class="
-                            absolute
-                            percentage-text
-                            flex
-                            justify-center
-                            items-center
-                            h-full
-                            w-full
-                        "
-                    >
-                        {{ rating }}%
-                    </span>
-                    <svg viewBox="0 0 36 36">
-                        <path
-                            d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-                            fill="none"
-                            :stroke="colorBar"
-                            stroke-width="3"
-                            :stroke-dasharray="rating + ', 100'"
-                        />
-                    </svg>
-                </div>
-            </div>
-            <router-link :to="{ name: 'Home' }">
+            <ScoreChart :vote="item.vote_average" :isAbsolute="true" />
+
+            <router-link :to="{ name: 'movie', params: { id: item.id } }">
                 <img :src="imageUrl" />
             </router-link>
         </div>
         <div class="card-content flex flex-wrap w-full relative">
             <h2 class="w-full">
                 <router-link
-                    :to="{ name: 'Home' }"
+                    :to="{ name: 'movie', params: { id: item.id } }"
                     v-text="item?.title || item?.original_name"
                 >
                 </router-link>
@@ -47,8 +21,10 @@
 </template>
 
 <script>
+import ScoreChart from './utilities/ScoreChart.vue'
 export default {
     name: 'ReelCard',
+    components: { ScoreChart },
     props: {
         item: {
             type: Object,
@@ -60,20 +36,6 @@ export default {
                 'https://www.themoviedb.org/t/p/w220_and_h330_face/' +
                 this.item.poster_path
             )
-        },
-        rating: function () {
-            return this.item.vote_average * 10
-        },
-        colorBar: function () {
-            const rating = this.rating
-            if (rating < 70 && rating > 40) {
-                return '#d2d531'
-            }
-            if (rating < 40) {
-                return '#db2360'
-            }
-
-            return '#21d07a'
         },
     },
 }
@@ -116,29 +78,6 @@ export default {
     p {
         font-size: 1em;
         color: rgba(0, 0, 0, 0.6);
-    }
-}
-
-.rating {
-    position: absolute;
-    bottom: -18px;
-    left: 10px;
-    width: 38px;
-    height: 38px;
-    display: inline-block;
-    transition: transform 0.2s;
-    transform: scale(1);
-    background-color: #081c22;
-    border-radius: 50%;
-
-    .percentage-text {
-        font-size: 0.7em;
-        font-family: 'Consensus' !important;
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
     }
 }
 </style>

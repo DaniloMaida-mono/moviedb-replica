@@ -19,6 +19,7 @@
             path="/trending/all/day"
             :isTrending="true"
         />
+        <RegisterSection />
     </main>
 </template>
 
@@ -27,9 +28,10 @@ import Header from '../components/Header.vue'
 import SearchBox from '../components/SearchBox.vue'
 import MovieReel from '../components/MovieReel.vue'
 import TrailerReel from '../components/TrailerReel.vue'
+import RegisterSection from '../components/RegisterSection.vue'
 export default {
     name: 'Home',
-    components: { Header, SearchBox, MovieReel, TrailerReel },
+    components: { Header, SearchBox, MovieReel, TrailerReel, RegisterSection },
     data() {
         return {
             reels: {
@@ -96,13 +98,7 @@ export default {
 </script>
 
 <style>
-main {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
-    background-color: #fff;
-    margin-top: 64px;
+.content-wrapper {
+    padding: 30px 40px;
 }
 </style>

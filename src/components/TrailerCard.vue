@@ -1,5 +1,8 @@
 <template>
-    <div class="trailer-card flex flex-wrap">
+    <div
+        class="trailer-card flex flex-wrap"
+        v-on:mouseover="$emit('overCard', $event, overBg)"
+    >
         <div
             class="trailer-image w-full h-full relative"
             v-bind:style="{ backgroundImage: 'url(' + bg + ')' }"
@@ -30,6 +33,9 @@ export default {
         desc: {
             type: String,
             required: true,
+        },
+        overBg: {
+            type: String,
         },
     },
 }

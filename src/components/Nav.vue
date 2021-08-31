@@ -1,7 +1,7 @@
 <template>
     <div class="navbar w-full flex justify-between text-white">
         <div class="nav-item nav-mainlinks">
-            <router-link :to="{ name: 'Home' }">
+            <router-link :to="{ name: 'home' }">
                 <img class="logo mr-4" src="../assets/logo.svg" alt="" />
             </router-link>
             <ul class="nav-list flex list-none list-inside">

@@ -92,7 +92,6 @@ export default {
         }).then((data) => {
             if (data.results) {
                 this.results = data.results
-                console.log(data.results)
                 return
             }
             this.results = [data]
