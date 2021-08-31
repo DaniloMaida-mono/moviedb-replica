@@ -98,16 +98,6 @@ export default {
 </script>
 
 <style>
-main {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
-    background-color: #fff;
-    margin-top: 64px;
-}
-
 .content-wrapper {
     padding: 30px 40px;
 }

@@ -3,7 +3,7 @@
         class="movie-reel trailer-reel w-full flex flex-col relative"
         v-bind:style="{ backgroundImage: 'url(' + sectionBgUrl + ')' }"
     >
-        <div class="wrapper pt-8">
+        <div class="wrapper blend pt-8">
             <div
                 class="movie-reel__header flex justify-start items-center px-10"
             >
@@ -79,7 +79,6 @@ export default {
         },
 
         handleOverCard: function (e, bgUrl) {
-            console.log(bgUrl)
             this.sectionBgUrl = bgUrl
         },
     },
@@ -101,11 +100,6 @@ export default {
 
     .wrapper {
         height: 100%;
-        background: linear-gradient(
-            to right,
-            rgba(3, 37, 65, 0.75) 0%,
-            rgba(3, 37, 65, 0.75) 100%
-        );
     }
 }
 </style>

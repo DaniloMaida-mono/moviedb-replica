@@ -33,7 +33,12 @@ export default {
 
 <style lang="scss" scoped>
 .searchbox {
-    background-image: url('../assets/rickmorty-bg.jpg');
+    background-image: linear-gradient(
+            to right,
+            rgba($blue, 0.8) 0%,
+            rgba($blue, 0) 100%
+        ),
+        url('../assets/rickmorty-bg.jpg');
     min-height: 300px;
     height: calc(100vh / 2.5);
     max-height: 360px;

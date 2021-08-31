@@ -41,7 +41,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+    name: 'RegisterSection',
+}
 </script>
 
 <style lang="scss">
