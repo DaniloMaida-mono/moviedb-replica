@@ -7,6 +7,7 @@
                 <div class="content-wrapper flex">
                     <div class="main-column flex flex-wrap">
                         <CastReel />
+                        <MediaReel />
                     </div>
                     <div class="side-column flex flex-wrap"></div>
                 </div>
@@ -19,10 +20,11 @@
 import Header from '../components/Header.vue'
 import Presentation from '../components/Movie/Presentation.vue'
 import CastReel from '../components/Movie/CastReel.vue'
+import MediaReel from '../components/Movie/MediaReel.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
-    components: { Header, Presentation, CastReel },
+    components: { Header, Presentation, CastReel, MediaReel },
     data() {
         return {
             item: {},

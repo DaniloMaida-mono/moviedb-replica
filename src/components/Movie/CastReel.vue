@@ -49,7 +49,6 @@ export default {
             }).then((data) => {
                 if (data && data.cast) {
                     this.cast = data.cast
-                    console.log(data)
                 }
             })
         },
