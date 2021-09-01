@@ -25,6 +25,7 @@
                     flex
                     overflow-y-hidden overflow-x-scroll
                     should-fade
+                    relative
                 "
                 v-html="items"
             ></div>
