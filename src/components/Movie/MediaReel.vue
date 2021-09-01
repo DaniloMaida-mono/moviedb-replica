@@ -40,7 +40,6 @@ export default {
     data() {
         return {
             query: 'videos',
-            path: `/movie/${this.$route.params.id}-godzilla-vs-kong/remote/media_panel/${this.query}?translate=false`,
             activeIndex: 0,
             items: '',
             anchors: [

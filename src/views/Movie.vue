@@ -12,6 +12,7 @@
                             v-if="item.belongs_to_collection"
                             :item="item.belongs_to_collection"
                         />
+                        <RecommendationReel />
                     </div>
                     <div class="side-column flex flex-wrap"></div>
                 </div>
@@ -26,6 +27,7 @@ import Presentation from '../components/Movie/Presentation.vue'
 import CastReel from '../components/Movie/CastReel.vue'
 import MediaReel from '../components/Movie/MediaReel.vue'
 import CollectionSection from '../components/Movie/CollectionSection.vue'
+import RecommendationReel from '../components/Movie/RecommendationReel.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
@@ -35,6 +37,7 @@ export default {
         CastReel,
         MediaReel,
         CollectionSection,
+        RecommendationReel,
     },
     data() {
         return {
