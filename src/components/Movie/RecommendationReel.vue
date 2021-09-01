@@ -1,5 +1,5 @@
 <template>
-    <section class="panel recommendation max-w-full">
+    <section class="panel recommendation max-w-full" v-if="items">
         <div class="title mb-5">
             <h3>Recommendations</h3>
         </div>
@@ -37,9 +37,6 @@ export default {
     created() {
         this.fetchData(this.query)
     },
-    watch: {
-        $route: 'fetchData',
-    },
     methods: {
         fetchData() {
             axiosGet(import.meta.env.VITE_API_URL + this.path, {
@@ -48,7 +45,6 @@ export default {
             }).then((data) => {
                 if (data && data.results) {
                     this.items = data.results
-                    console.log(data.results)
                 }
             })
         },

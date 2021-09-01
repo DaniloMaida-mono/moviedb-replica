@@ -21,17 +21,27 @@
         />
         <RegisterSection />
     </main>
+
+    <Footer />
 </template>
 
 <script>
 import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 import SearchBox from '../components/SearchBox.vue'
 import MovieReel from '../components/MovieReel.vue'
 import TrailerReel from '../components/TrailerReel.vue'
 import RegisterSection from '../components/RegisterSection.vue'
 export default {
     name: 'Home',
-    components: { Header, SearchBox, MovieReel, TrailerReel, RegisterSection },
+    components: {
+        Header,
+        SearchBox,
+        MovieReel,
+        TrailerReel,
+        RegisterSection,
+        Footer,
+    },
     data() {
         return {
             reels: {

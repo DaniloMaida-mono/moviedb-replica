@@ -14,20 +14,31 @@
                         />
                         <RecommendationReel />
                     </div>
-                    <div class="side-column flex flex-wrap"></div>
+                    <div class="side-column flex flex-wrap">
+                        <div class="side-container w-full">
+                            <SocialList />
+                            <MovieDetails :item="item" />
+                            <KeywordsList />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+    <Footer />
 </template>
 
 <script>
 import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 import Presentation from '../components/Movie/Presentation.vue'
 import CastReel from '../components/Movie/CastReel.vue'
 import MediaReel from '../components/Movie/MediaReel.vue'
 import CollectionSection from '../components/Movie/CollectionSection.vue'
 import RecommendationReel from '../components/Movie/RecommendationReel.vue'
+import SocialList from '../components/Movie/SocialList.vue'
+import MovieDetails from '../components/Movie/MovieDetails.vue'
+import KeywordsList from '../components/Movie/KeywordsList.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
@@ -38,6 +49,10 @@ export default {
         MediaReel,
         CollectionSection,
         RecommendationReel,
+        SocialList,
+        MovieDetails,
+        Footer,
+        KeywordsList,
     },
     data() {
         return {

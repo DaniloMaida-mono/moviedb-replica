@@ -65,14 +65,11 @@ export default {
     created() {
         this.fetchData(this.query)
     },
-    watch: {
-        $route: 'fetchData',
-    },
     methods: {
         fetchData(query) {
             axiosGet(
                 'https://www.themoviedb.org' +
-                    `/movie/${this.$route.params.id}-godzilla-vs-kong/remote/media_panel/${query}?translate=false`,
+                    `/movie/${this.$route.params.id}/remote/media_panel/${query}?translate=false`,
                 {
                     api_key: import.meta.env.VITE_API_KEY,
                     language: 'it-IT',

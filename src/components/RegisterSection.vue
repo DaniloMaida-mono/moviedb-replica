@@ -48,6 +48,7 @@ export default {
 
 <style lang="scss">
 .register {
+    margin-bottom: 30px;
     background-image: url('https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)/lMnoYqPIAVL0YaLP5YjRy7iwaYv.jpg');
 
     .title {
