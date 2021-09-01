@@ -8,6 +8,10 @@
                     <div class="main-column flex flex-wrap">
                         <CastReel />
                         <MediaReel />
+                        <CollectionSection
+                            v-if="item.belongs_to_collection"
+                            :item="item.belongs_to_collection"
+                        />
                     </div>
                     <div class="side-column flex flex-wrap"></div>
                 </div>
@@ -21,10 +25,17 @@ import Header from '../components/Header.vue'
 import Presentation from '../components/Movie/Presentation.vue'
 import CastReel from '../components/Movie/CastReel.vue'
 import MediaReel from '../components/Movie/MediaReel.vue'
+import CollectionSection from '../components/Movie/CollectionSection.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
-    components: { Header, Presentation, CastReel, MediaReel },
+    components: {
+        Header,
+        Presentation,
+        CastReel,
+        MediaReel,
+        CollectionSection,
+    },
     data() {
         return {
             item: {},
@@ -63,6 +74,7 @@ export default {
 
 .panel {
     border-top: 1px solid #d7d7d7;
+    padding: 30px 0;
     &:first-of-type {
         border-top: none;
     }
