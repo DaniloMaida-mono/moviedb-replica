@@ -21,6 +21,7 @@
                             "
                         >
                             <img
+                                v-if="providerItem"
                                 class="rounded"
                                 :src="providerLogo"
                                 :alt="item?.title"
@@ -108,6 +109,23 @@ export default {
             required: true,
         },
     },
+    methods: {
+        async fetchData() {
+            try {
+                const { results } = await axiosGet(
+                    import.meta.env.VITE_API_URL + this.providerPath,
+                    {
+                        api_key: import.meta.env.VITE_API_KEY,
+                        language: 'it-IT',
+                    }
+                )
+                const result = results[Object.keys(results)[0]]
+                this.providerItem = result['flatrate']
+                    ? result['flatrate'][0]
+                    : result['flatrate_and_buy'][0]
+            } catch (error) {}
+        },
+    },
     computed: {
         posterBg: function () {
             return (
@@ -136,18 +154,8 @@ export default {
             return rhours + 'h ' + rminutes + 'm'
         },
     },
-    mounted() {
-        axiosGet(import.meta.env.VITE_API_URL + this.providerPath, {
-            api_key: import.meta.env.VITE_API_KEY,
-            language: 'it-IT',
-        }).then((data) => {
-            if (data.results) {
-                const result = data.results[Object.keys(data.results)[0]]
-                this.providerItem = result['flatrate']
-                    ? result['flatrate'][0]
-                    : result['flatrate_and_buy'][0]
-            }
-        })
+    created() {
+        this.fetchData()
     },
 }
 </script>

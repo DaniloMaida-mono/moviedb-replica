@@ -1,10 +1,15 @@
 <template>
     <li class="cast-card">
-        <a href="#" class="profile-pic block">
+        <a href="#" @click.prevent class="profile-pic block">
             <img :src="profilePic" :alt="item?.name" class="w-full h-full" />
         </a>
         <p class="person">
-            <a href="#" v-text="item?.name" class="font-bold"></a>
+            <a
+                href="#"
+                @click.prevent
+                v-text="item?.name"
+                class="font-bold"
+            ></a>
         </p>
         <p class="character" v-text="item?.character"></p>
     </li>

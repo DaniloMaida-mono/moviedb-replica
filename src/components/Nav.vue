@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import PlusIcon from './utilities/PlusIcon.vue'
-import SearchIcon from './utilities/SearchIcon.vue'
+import PlusIcon from './icons/PlusIcon.vue'
+import SearchIcon from './icons/SearchIcon.vue'
 export default {
     name: 'Nav',
     components: { PlusIcon, SearchIcon },

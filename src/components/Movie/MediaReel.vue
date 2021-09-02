@@ -40,7 +40,6 @@ export default {
     data() {
         return {
             query: 'videos',
-            path: `/movie/${this.$route.params.id}-godzilla-vs-kong/remote/media_panel/${this.query}?translate=false`,
             activeIndex: 0,
             items: '',
             anchors: [
@@ -67,13 +66,15 @@ export default {
         this.fetchData(this.query)
     },
     watch: {
-        $route: 'fetchData',
+        $route(to, from) {
+            this.fetchData(this.query)
+        },
     },
     methods: {
         fetchData(query) {
             axiosGet(
                 'https://www.themoviedb.org' +
-                    `/movie/${this.$route.params.id}-godzilla-vs-kong/remote/media_panel/${query}?translate=false`,
+                    `/movie/${this.$route.params.id}/remote/media_panel/${query}?translate=false`,
                 {
                     api_key: import.meta.env.VITE_API_KEY,
                     language: 'it-IT',

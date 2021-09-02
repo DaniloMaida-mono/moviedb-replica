@@ -1,29 +1,34 @@
 <template>
     <section class="panel max-w-fulls">
-        <div
-            class="
-                collection-container
-                flex flex-wrap
-                items-center
-                content-center
-                w-full
-                text-white
-            "
-            v-bind:style="{
-                backgroundImage: `linear-gradient(to right, rgba(3,37,65,1) 0%, rgba(3,37,65,0.6) 100%), url(${bg})`,
-            }"
-        >
-            <div class="collection-content w-full">
-                <h2>Part of the {{ item?.name }}</h2>
+        <transition>
+            <div
+                class="
+                    collection-container
+                    flex flex-wrap
+                    items-center
+                    content-center
+                    w-full
+                    text-white
+                "
+                v-bind:style="{
+                    backgroundImage: `linear-gradient(to right, rgba(3,37,65,1) 0%, rgba(3,37,65,0.6) 100%), url(${bg})`,
+                }"
+            >
+                <div class="collection-content w-full">
+                    <h2>Part of the {{ item?.name }}</h2>
+                </div>
+                <div class="collection-cta mt-5">
+                    <p>
+                        <a
+                            href="#"
+                            @click.prevent
+                            class="uppercase font-semibold"
+                            >View the Collection</a
+                        >
+                    </p>
+                </div>
             </div>
-            <div class="collection-cta mt-5">
-                <p>
-                    <a href="#" class="uppercase font-semibold"
-                        >View the Collection</a
-                    >
-                </p>
-            </div>
-        </div>
+        </transition>
     </section>
 </template>
 
