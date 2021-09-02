@@ -8,6 +8,7 @@ export default defineConfig({
         fs: {
             allow: ['..'],
         },
+        host: true,
     },
     css: {
         preprocessorOptions: {

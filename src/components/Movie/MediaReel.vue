@@ -65,6 +65,11 @@ export default {
     created() {
         this.fetchData(this.query)
     },
+    watch: {
+        $route(to, from) {
+            this.fetchData(this.query)
+        },
+    },
     methods: {
         fetchData(query) {
             axiosGet(

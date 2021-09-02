@@ -1,9 +1,9 @@
 <template>
     <div class="recommendation-card">
         <div class="image">
-            <a href="#">
+            <router-link :to="{ name: 'movie', params: { id: item.id } }">
                 <img :src="imgSrc" :alt="item.title" />
-            </a>
+            </router-link>
         </div>
         <div class="detail flex justify-between items-center">
             <p v-text="item.title"></p>
@@ -21,6 +21,7 @@ export default {
             required: true,
         },
     },
+
     computed: {
         rating: function () {
             return Math.round(this.item.vote_average * 10)

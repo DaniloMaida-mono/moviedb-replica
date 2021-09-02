@@ -6,7 +6,7 @@
         v-on:click="$emit('filterResults', $event, index)"
     >
         <h3 class="">
-            <a href="#" v-text="label"></a>
+            <a href="#" @click.prevent v-text="label"></a>
         </h3>
     </div>
 </template>
@@ -58,7 +58,7 @@ export default {
     border-radius: 30px;
 
     a {
-        background: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+        background: $greenGradient;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -71,7 +71,7 @@ export default {
     }
 }
 .anchor.contrast.selected {
-    background: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+    background: $greenGradient;
     border-radius: 30px;
 
     a {

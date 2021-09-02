@@ -8,27 +8,27 @@
             </div>
         </li>
         <li class="tooltip">
-            <a href="#" class="flex justify-center items-center">
+            <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/list-icon.svg" alt="" />
             </a>
         </li>
         <li class="tooltip">
-            <a href="#" class="flex justify-center items-center">
+            <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/heart-icon.svg" alt="" />
             </a>
         </li>
         <li class="tooltip">
-            <a href="#" class="flex justify-center items-center">
+            <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/bookmark-icon.svg" alt="" />
             </a>
         </li>
         <li class="tooltip">
-            <a href="#" class="flex justify-center items-center">
+            <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/list-icon.svg" alt="" />
             </a>
         </li>
         <li class="video">
-            <a href="#" class="font-semibold flex items-center">
+            <a href="#" @click.prevent class="font-semibold flex items-center">
                 <img src="/src/assets/play-icon.svg" alt="" />
                 Play Trailer
             </a>

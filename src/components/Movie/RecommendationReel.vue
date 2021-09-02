@@ -35,7 +35,7 @@ export default {
         }
     },
     created() {
-        this.fetchData(this.query)
+        this.fetchData()
     },
     methods: {
         fetchData() {

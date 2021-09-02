@@ -1,8 +1,17 @@
 <template>
     <Header />
     <main>
-        <div class="movie-container w-full h-full">
-            <Presentation :item="item" />
+        <div v-if="!hasError" class="movie-container w-full h-full">
+            <div class="presentation-container w-full">
+                <div
+                    v-if="isLoading"
+                    class="presentation-fallback h-full w-full relative"
+                >
+                    <Loader />
+                </div>
+                <Presentation :item="item" v-else />
+            </div>
+
             <div class="w-full flex justify-center">
                 <div class="content-wrapper flex">
                     <div class="main-column flex flex-wrap">
@@ -24,14 +33,18 @@
                 </div>
             </div>
         </div>
+        <div v-else class="w-full">
+            <Page404 />
+        </div>
     </main>
     <Footer />
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import Presentation from '../components/Movie/Presentation.vue'
+import Loader from '../components/utilities/Loader.vue'
 import CastReel from '../components/Movie/CastReel.vue'
 import MediaReel from '../components/Movie/MediaReel.vue'
 import CollectionSection from '../components/Movie/CollectionSection.vue'
@@ -39,12 +52,16 @@ import RecommendationReel from '../components/Movie/RecommendationReel.vue'
 import SocialList from '../components/Movie/SocialList.vue'
 import MovieDetails from '../components/Movie/MovieDetails.vue'
 import KeywordsList from '../components/Movie/KeywordsList.vue'
+import Page404 from '../components/errors/404.vue'
 import { axiosGet } from '../../axiosGet'
 export default {
     name: 'Movie',
     components: {
         Header,
-        Presentation,
+        Presentation: defineAsyncComponent(() =>
+            import('../components/Movie/Presentation.vue')
+        ),
+        Loader,
         CastReel,
         MediaReel,
         CollectionSection,
@@ -53,28 +70,53 @@ export default {
         MovieDetails,
         Footer,
         KeywordsList,
+        Page404,
     },
     data() {
         return {
             item: {},
             path: `/movie/${this.$route.params.id}`,
+            isLoading: true,
+            hasError: false,
         }
     },
-
-    mounted() {
-        axiosGet(import.meta.env.VITE_API_URL + this.path, {
-            api_key: import.meta.env.VITE_API_KEY,
-            language: 'it-IT',
-        }).then((data) => {
-            if (data) {
-                this.item = data
+    methods: {
+        async fetchData() {
+            try {
+                console.log('REQUESTING', this.path)
+                const result = await axiosGet(
+                    import.meta.env.VITE_API_URL + this.path,
+                    {
+                        api_key: import.meta.env.VITE_API_KEY,
+                        language: 'it-IT',
+                    }
+                )
+                this.item = result
+                setTimeout(() => {
+                    this.isLoading = false
+                }, 700)
+            } catch (error) {
+                this.hasError = true
+                console.log(error)
             }
-        })
+        },
+    },
+    created() {
+        this.fetchData()
+    },
+    watch: {
+        $route(to, from) {
+            this.path = `/movie/${this.$route.params.id}`
+            this.fetchData()
+        },
     },
 }
 </script>
 
 <style lang="scss">
+.presentation-container {
+    min-height: 550px;
+}
 .main-column {
     width: calc(1400px - 80px - 268px);
     padding-right: 30px;
@@ -96,6 +138,19 @@ export default {
     &:first-of-type {
         border-top: none;
     }
+}
+
+.presentation-fallback {
+    min-height: 550px;
+    background-image: linear-gradient(
+        to right,
+        #191e20 150px,
+        rgba(25, 30, 32, 0.84) 100%
+    );
+}
+
+.side-container {
+    padding-top: 30px;
 }
 </style>
 

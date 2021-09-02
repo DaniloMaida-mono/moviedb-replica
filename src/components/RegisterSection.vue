@@ -16,7 +16,7 @@
                         Video.
                     </p>
                     <p class="button">
-                        <a href="#">Registrati</a>
+                        <a href="#" @click.prevent>Registrati</a>
                     </p>
                 </div>
                 <div class="column">
