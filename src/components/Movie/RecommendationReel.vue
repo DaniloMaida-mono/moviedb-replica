@@ -1,5 +1,5 @@
 <template>
-    <section class="panel recommendation max-w-full" v-if="items">
+    <section class="panel recommendation max-w-full relative" v-if="items">
         <div class="title mb-5">
             <h3>Recommendations</h3>
         </div>
@@ -7,11 +7,13 @@
             class="
                 recommendation-reel
                 should-fade
-                relative
                 overflow-x-scroll overflow-y-hidden
             "
         >
-            <div class="reel-content flex" v-if="items && items.length">
+            <div
+                class="reel-content px-4 md:px-0 flex"
+                v-if="items && items.length"
+            >
                 <RecommendationCard
                     v-for="item in items"
                     :key="item.id"

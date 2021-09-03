@@ -1,5 +1,5 @@
 <template>
-    <ul class="flex items-center w-full">
+    <ul class="flex justify-center md:justify-start items-center w-full">
         <li class="chart flex items-center">
             <div class="score"><ScoreChart :size="60" :vote="vote" /></div>
             <div class="text ml-2 font-bold">
@@ -7,27 +7,27 @@
                 Score
             </div>
         </li>
-        <li class="tooltip">
+        <li v-if="!isMobile" class="tooltip">
             <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/list-icon.svg" alt="" />
             </a>
         </li>
-        <li class="tooltip">
+        <li v-if="!isMobile" class="tooltip">
             <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/heart-icon.svg" alt="" />
             </a>
         </li>
-        <li class="tooltip">
+        <li v-if="!isMobile" class="tooltip">
             <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/bookmark-icon.svg" alt="" />
             </a>
         </li>
-        <li class="tooltip">
+        <li v-if="!isMobile" class="tooltip">
             <a href="#" @click.prevent class="flex justify-center items-center">
                 <img src="/src/assets/list-icon.svg" alt="" />
             </a>
         </li>
-        <li class="video">
+        <li v-if="!isMobile" class="video">
             <a href="#" @click.prevent class="font-semibold flex items-center">
                 <img src="/src/assets/play-icon.svg" alt="" />
                 Play Trailer
@@ -46,6 +46,7 @@ export default {
             type: Number,
             required: true,
         },
+        isMobile: Boolean,
     },
 }
 </script>

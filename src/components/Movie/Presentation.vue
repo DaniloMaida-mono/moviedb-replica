@@ -2,15 +2,41 @@
     <div
         v-if="item && Object.keys(item).length !== 0"
         class="movie-details w-full text-white"
-        v-bind:style="{ backgroundImage: 'url(' + posterBg + ')' }"
+        v-bind:style="{
+            backgroundImage: !isMobile ? 'url(' + posterBg + ')' : 'none',
+        }"
     >
         <div class="blend h-full w-full flex justify-center">
-            <div class="content-wrapper h-full w-full flex items-center">
-                <div class="movie-poster">
-                    <div class="movie-image w-full">
+            <div
+                class="
+                    content-wrapper
+                    h-full
+                    w-full
+                    flex flex-col
+                    md:flex-row
+                    items-center
+                "
+            >
+                <div
+                    class="movie-poster"
+                    v-bind:style="{
+                        backgroundImage: isMobile
+                            ? 'url(' + posterBg + ')'
+                            : 'none',
+                    }"
+                >
+                    <div class="movie-image w-full hidden md:block">
                         <img :src="movieImage" alt="" />
                     </div>
-                    <div class="movie-streaming flex justify-center py-4">
+                    <div
+                        class="
+                            movie-streaming
+                            justify-center
+                            py-4
+                            hidden
+                            md:flex
+                        "
+                    >
                         <div
                             class="
                                 provider
@@ -46,7 +72,7 @@
                                     }})</span
                                 >
                             </h2>
-                            <div class="facts flex">
+                            <div class="facts hidden md:flex">
                                 <span
                                     class="release"
                                     v-text="
@@ -73,7 +99,10 @@
                             </div>
                         </div>
                         <div class="reel mb-5 w-full">
-                            <ActionReel :vote="item?.vote_average" />
+                            <ActionReel
+                                :vote="item?.vote_average"
+                                :isMobile="isMobile"
+                            />
                         </div>
                         <h3
                             v-if="item.tagline"
@@ -152,6 +181,9 @@ export default {
             const minutes = (hours - rhours) * 60
             const rminutes = Math.round(minutes)
             return rhours + 'h ' + rminutes + 'm'
+        },
+        isMobile() {
+            return this.$store.state.isMobile
         },
     },
     created() {
@@ -251,6 +283,47 @@ export default {
     .overview-content {
         p {
             line-height: 1.4em;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content-wrapper,
+    .movie-content {
+        padding: 15px 20px;
+        max-width: 100vw;
+    }
+    .movie-details {
+        background: none;
+    }
+    .movie-poster {
+        width: 100%;
+        height: calc(100vw / 2.222222);
+        background-size: cover;
+
+        .movie-image {
+            height: 450px;
+        }
+    }
+
+    .movie-content {
+        .title {
+            h2 {
+                font-size: 1rem;
+            }
+        }
+
+        h3.tagline {
+            font-size: 0.9em;
+        }
+        h3.overview-title {
+            font-size: 1.1em;
+        }
+
+        .overview-content {
+            p {
+                line-height: 1.2em;
+            }
         }
     }
 }

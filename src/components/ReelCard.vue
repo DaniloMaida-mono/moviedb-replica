@@ -80,4 +80,12 @@ export default {
         color: rgba(0, 0, 0, 0.6);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .card {
+        &:first-child {
+            margin-left: 20px;
+        }
+    }
+}
 </style>

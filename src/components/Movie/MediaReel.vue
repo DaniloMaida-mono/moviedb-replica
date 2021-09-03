@@ -1,8 +1,8 @@
 <template>
-    <section class="panel media-reel py-8 max-w-full">
+    <section class="panel media-reel py-8 max-w-full relative">
         <div class="menu flex items-center mb-3">
-            <h3 class="mr-12">Media</h3>
-            <ul class="flex items-center w-full">
+            <h3 class="mr-6 md:mr-12">Media</h3>
+            <ul class="flex flex-wrap md:flex-nowrap items-center w-full">
                 <li
                     v-for="(anchor, index) in anchors"
                     :key="index"
@@ -25,7 +25,6 @@
                     flex
                     overflow-y-hidden overflow-x-scroll
                     should-fade
-                    relative
                 "
                 v-html="items"
             ></div>
@@ -198,7 +197,7 @@ export default {
 }
 .poster,
 .poster.view_more {
-    min-width: 200px;
+    width: 200px;
     height: 300px;
 }
 
@@ -207,5 +206,47 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        ul {
+            li {
+                font-size: 0.9em;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .media-content {
+        height: 141px;
+    }
+
+    .video.card,
+    .backdrop,
+    .view_more {
+        min-width: 250px;
+        height: 141px;
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+        }
+        div.play_background {
+            width: 46px;
+            height: 46px;
+        }
+    }
+
+    .poster,
+    .poster.view-more {
+        min-width: 94px;
+        height: 141px;
+    }
+
+    .backdrop img {
+        min-width: 250px;
+        height: 141px;
+    }
 }
 </style>

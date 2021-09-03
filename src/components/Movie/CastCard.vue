@@ -69,4 +69,22 @@ export default {
         padding: 0 10px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .cast-card {
+        min-width: 122px;
+        width: 122px;
+        .profile-pic {
+            width: 120px;
+            height: 133px;
+        }
+
+        p.person {
+            font-size: 0.8em;
+        }
+        p.character {
+            font-size: 0.7em;
+        }
+    }
+}
 </style>

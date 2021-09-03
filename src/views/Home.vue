@@ -113,4 +113,12 @@ export default {
     max-width: 1400px;
     width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .content-wrapper {
+        padding: inherit;
+        max-width: auto;
+        width: auto;
+    }
+}
 </style>

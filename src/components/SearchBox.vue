@@ -1,6 +1,6 @@
 <template>
     <section class="searchbox w-full">
-        <div class="content-wrapper w-full flex flex-col">
+        <div class="px-5 md:px-10 flex flex-col">
             <div class="title">
                 <h1>Benvenuto.</h1>
                 <h2>

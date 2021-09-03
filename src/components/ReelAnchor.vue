@@ -17,7 +17,6 @@
             ></a>
             <ExpandIcon
                 v-if="isMobile && !isMenuExpanded"
-                class="hidden"
                 v-on:click="$emit('expandMenu', $event)"
             />
         </h3>
@@ -111,30 +110,19 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
     .anchor.small {
         display: none;
     }
-    .anchor.small.selected {
-        display: block;
-        h3 {
-            svg {
-                display: block;
-            }
-        }
-    }
+    .anchor.small.selected,
     .anchor.expanded {
         display: block;
     }
-}
+    .anchor.contrast {
+        h3 {
+            color: $blue;
 
-.anchor.contrast {
-    h3 {
-        color: $blue;
-
-        .expand-icon {
-            filter: invert(9%) sepia(53%) saturate(1778%) hue-rotate(188deg)
-                brightness(99%) contrast(94%);
+            .expand-icon {
+                filter: invert(9%) sepia(53%) saturate(1778%) hue-rotate(188deg)
+                    brightness(99%) contrast(94%);
+            }
         }
     }
-}
-.anchor.contrast.selected {
-    background: $greenGradient;
 }
 </style>
