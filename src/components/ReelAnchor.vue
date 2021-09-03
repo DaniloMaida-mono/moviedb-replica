@@ -107,11 +107,6 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 }
 
 @media screen and (max-width: 768px) {
-    .anchor {
-        .expand-icon {
-            // display: none;
-        }
-    }
     .anchor.small {
         display: none;
     }
@@ -119,19 +114,15 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
     .anchor.expanded {
         display: block;
     }
-}
+    .anchor.contrast {
+        h3 {
+            color: $blue;
 
-.anchor.contrast {
-    h3 {
-        color: $blue;
-
-        .expand-icon {
-            filter: invert(9%) sepia(53%) saturate(1778%) hue-rotate(188deg)
-                brightness(99%) contrast(94%);
+            .expand-icon {
+                filter: invert(9%) sepia(53%) saturate(1778%) hue-rotate(188deg)
+                    brightness(99%) contrast(94%);
+            }
         }
     }
-}
-.anchor.contrast.selected {
-    background: $greenGradient;
 }
 </style>
