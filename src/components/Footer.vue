@@ -25,4 +25,13 @@ footer {
         max-width: 400px;
     }
 }
+
+@media screen and (max-width: 768px) {
+    footer {
+        height: 150px;
+        img {
+            max-width: 150px;
+        }
+    }
+}
 </style>

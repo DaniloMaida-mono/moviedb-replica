@@ -1,11 +1,28 @@
 <template>
     <section
-        class="movie-reel should-fade w-full flex flex-col pt-8 relative"
+        class="
+            movie-reel
+            should-fade
+            w-full
+            flex flex-col
+            pt-10
+            md:pt-8
+            relative
+        "
         :class="isTrending && 'trending'"
     >
-        <div class="movie-reel__header flex justify-start items-center px-10">
+        <div
+            class="
+                movie-reel__header
+                relative
+                flex
+                justify-start
+                items-center
+                px-10
+            "
+        >
             <h2 class="mr-5" v-text="label"></h2>
-            <div class="selector md:flex content-center">
+            <div v-if="!isMobile" class="selector flex content-center">
                 <ReelAnchor
                     v-for="(anchor, index) in anchors"
                     :index="index"
@@ -15,6 +32,22 @@
                     v-bind:group="anchor.group"
                     v-bind:selected="activeIndex === index ? true : false"
                 />
+            </div>
+            <div v-else class="anchor-sm-wrapper relative">
+                <div class="selector content-center">
+                    <ReelAnchor
+                        :isMobile="isMobile"
+                        :isMenuExpanded="isMenuExpanded"
+                        v-for="(anchor, index) in anchors"
+                        :index="index"
+                        v-on:filterResults="handleAnchorClick"
+                        v-on:expandMenu="handleExpandMenu"
+                        :key="index"
+                        v-bind:label="anchor.label"
+                        v-bind:group="anchor.group"
+                        v-bind:selected="activeIndex === index ? true : false"
+                    />
+                </div>
             </div>
         </div>
         <div
@@ -43,6 +76,7 @@
 import { defineAsyncComponent } from 'vue'
 import ReelAnchor from './ReelAnchor.vue'
 import FakeCard from '../components/utilities/FakeCard.vue'
+import ExpandIcon from './icons/ExpandIcon.vue'
 
 import { axiosGet } from '../../axiosGet'
 export default {
@@ -53,6 +87,7 @@ export default {
             loader: () => import('./ReelCard.vue'),
         }),
         FakeCard,
+        ExpandIcon,
     },
     props: {
         label: String,
@@ -71,12 +106,14 @@ export default {
             activeIndex: 0,
             results: null,
             isLoading: true,
+            isMenuExpanded: false,
         }
     },
     methods: {
         handleAnchorClick: function (e, index) {
             e.preventDefault()
             this.isLoading = true
+            this.isMenuExpanded = false
             this.activeIndex = index
             const path = e.currentTarget.dataset.group
             this.fetchData(path)
@@ -95,9 +132,17 @@ export default {
                 }
             })
         },
+        handleExpandMenu(e) {
+            this.isMenuExpanded = !this.isMenuExpanded
+        },
     },
     created() {
         this.fetchData()
+    },
+    computed: {
+        isMobile() {
+            return this.$store.state.isMobile
+        },
     },
 }
 </script>
@@ -116,7 +161,6 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 .movie-reel.trending {
     background-image: url('https://www.themoviedb.org/assets/2/v4/misc/trending-bg-39afc2a5f77e31d469b25c187814c0a2efef225494c038098d62317d923f8415.svg');
     background-position: 50% 200px;
-    // background-size: var(--maxPrimaryPageWidth);
     background-repeat: no-repeat;
 }
 
@@ -129,9 +173,18 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 }
 
 @media screen and (max-width: 768px) {
+    .anchor-sm-wrapper {
+        height: 30px;
+        display: block;
+        position: relative;
+        z-index: 5;
+    }
+
+    .menu-hidden {
+        background: $greenGradient;
+    }
     .selector {
-        border-top: none;
-        border-radius: 18px;
+        border-radius: 15px;
         background: $greenGradient;
     }
 }

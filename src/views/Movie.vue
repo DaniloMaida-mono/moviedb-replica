@@ -114,6 +114,7 @@ export default {
 </script>
 
 <style lang="scss">
+$greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 .presentation-container {
     min-height: 550px;
 }

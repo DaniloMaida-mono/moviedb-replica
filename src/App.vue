@@ -4,6 +4,18 @@
     </div>
 </template>
 
+<script>
+export default {
+    created() {
+        this.$store.commit('checkMobile')
+    },
+    mounted() {
+        window.addEventListener('resize', () => {
+            this.$store.commit('checkMobile')
+        })
+    },
+}
+</script>
 <style lang="scss">
 .page-wrap {
     min-height: 100%;
