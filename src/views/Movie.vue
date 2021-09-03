@@ -23,7 +23,7 @@
                         />
                         <RecommendationReel />
                     </div>
-                    <div class="side-column flex flex-wrap">
+                    <div class="side-column md:flex flex-wrap hidden">
                         <div class="side-container w-full">
                             <SocialList />
                             <MovieDetails :item="item" />
@@ -152,6 +152,16 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 
 .side-container {
     padding-top: 30px;
+}
+@media screen and (max-width: 768px) {
+    .main-column {
+        width: 100vw;
+        padding: 0 20px;
+
+        h3 {
+            font-size: 1em;
+        }
+    }
 }
 </style>
 

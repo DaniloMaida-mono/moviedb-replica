@@ -17,7 +17,6 @@
             ></a>
             <ExpandIcon
                 v-if="isMobile && !isMenuExpanded"
-                class="hidden"
                 v-on:click="$emit('expandMenu', $event)"
             />
         </h3>
@@ -108,17 +107,15 @@ $greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
 }
 
 @media screen and (max-width: 768px) {
+    .anchor {
+        .expand-icon {
+            // display: none;
+        }
+    }
     .anchor.small {
         display: none;
     }
-    .anchor.small.selected {
-        display: block;
-        h3 {
-            svg {
-                display: block;
-            }
-        }
-    }
+    .anchor.small.selected,
     .anchor.expanded {
         display: block;
     }

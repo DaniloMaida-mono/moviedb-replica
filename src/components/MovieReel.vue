@@ -18,7 +18,8 @@
                 flex
                 justify-start
                 items-center
-                px-10
+                px-5
+                md:px-10
             "
         >
             <h2 class="mr-5" v-text="label"></h2>
@@ -112,8 +113,11 @@ export default {
     methods: {
         handleAnchorClick: function (e, index) {
             e.preventDefault()
-            this.isLoading = true
             this.isMenuExpanded = false
+            if (index === this.activeIndex) {
+                return
+            }
+            this.isLoading = true
             this.activeIndex = index
             const path = e.currentTarget.dataset.group
             this.fetchData(path)
