@@ -8,7 +8,7 @@
                 class="movie-reel__header flex justify-start items-center px-10"
             >
                 <h2 class="mr-5 text-white" v-text="label"></h2>
-                <div class="selector flex content-center">
+                <div v-if="!isMobile" class="selector flex content-center">
                     <ReelAnchor
                         v-for="(anchor, index) in anchors"
                         :index="index"
@@ -19,6 +19,25 @@
                         v-bind:selected="activeIndex === index ? true : false"
                         v-bind:contrast="true"
                     />
+                </div>
+                <div v-else class="anchor-sm-wrapper relative">
+                    <div class="selector content-center">
+                        <ReelAnchor
+                            :isMobile="isMobile"
+                            :isMenuExpanded="isMenuExpanded"
+                            v-for="(anchor, index) in anchors"
+                            :index="index"
+                            v-on:expandMenu="handleExpandMenu"
+                            v-on:filterResults="handleAnchorClick"
+                            :key="index"
+                            v-bind:label="anchor.label"
+                            v-bind:group="anchor.group"
+                            v-bind:selected="
+                                activeIndex === index ? true : false
+                            "
+                            v-bind:contrast="true"
+                        />
+                    </div>
                 </div>
             </div>
             <transition name="fade">
@@ -70,16 +89,26 @@ export default {
         return {
             activeIndex: 0,
             sectionBgUrl: '/src/assets/raised-wolves.jpg',
+            isMenuExpanded: false,
         }
     },
     methods: {
         handleAnchorClick: function (e, index) {
-            e.preventDefault()
+            console.log(index)
             this.activeIndex = index
+            this.isMenuExpanded = false
         },
 
         handleOverCard: function (e, bgUrl) {
             this.sectionBgUrl = bgUrl
+        },
+        handleExpandMenu(e) {
+            this.isMenuExpanded = !this.isMenuExpanded
+        },
+    },
+    computed: {
+        isMobile() {
+            return this.$store.state.isMobile
         },
     },
 }

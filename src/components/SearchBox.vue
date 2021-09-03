@@ -15,7 +15,11 @@
                             type="text"
                             name=""
                             id=""
-                            placeholder="Cerca un film, serie tv, personaggio......"
+                            :placeholder="
+                                isMobile
+                                    ? 'Cerca...'
+                                    : 'Cerca un film, serie tv, personaggio......'
+                            "
                         />
                     </label>
                     <input type="submit" value="Search" />
@@ -28,6 +32,11 @@
 <script>
 export default {
     name: 'SearchBox',
+    computed: {
+        isMobile() {
+            return this.$store.state.isMobile
+        },
+    },
 }
 </script>
 
@@ -101,6 +110,17 @@ export default {
         font-weight: 700;
         &:hover {
             color: $blue;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 1.4em;
         }
     }
 }

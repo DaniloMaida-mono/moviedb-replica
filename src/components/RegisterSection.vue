@@ -4,7 +4,7 @@
             <div class="title">
                 <h2>Registrati Oggi</h2>
             </div>
-            <div class="content flex py-5">
+            <div class="content flex flex-col md:flex-row py-5">
                 <div class="column">
                     <p>
                         Get access to maintain your own
@@ -19,7 +19,7 @@
                         <a href="#" @click.prevent>Registrati</a>
                     </p>
                 </div>
-                <div class="column">
+                <div class="column pt-3 md:pt-0">
                     <ul class="ml-5 list-outside list-disc">
                         <li>Goditi TMDB senza pubblicità</li>
                         <li>Mantieni la watchlist personale</li>
@@ -84,6 +84,29 @@ export default {
             }
             li {
                 opacity: 0.8;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .register {
+        .title {
+            h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        .content {
+            .column {
+                p {
+                    font-size: 1em;
+                }
+
+                p.button {
+                    a {
+                        font-size: 0.8em;
+                    }
+                }
             }
         }
     }

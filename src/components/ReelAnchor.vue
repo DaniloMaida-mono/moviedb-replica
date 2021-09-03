@@ -1,19 +1,34 @@
 <template>
     <div
-        class="anchor"
+        class="anchor relative block"
         :data-group="group"
-        :class="[selected ? 'selected' : '', contrast ? 'contrast' : '']"
-        v-on:click="$emit('filterResults', $event, index)"
+        :class="[
+            selected ? 'selected' : '',
+            contrast ? 'contrast' : '',
+            isMobile ? 'small' : 'large',
+        ]"
+        v-bind:style="{ display: isMobile && isMenuExpanded ? 'block' : '' }"
     >
-        <h3 class="">
-            <a href="#" @click.prevent v-text="label"></a>
+        <h3 class="flex items-center justify-between">
+            <a
+                href="#"
+                v-on:click.prevent="$emit('filterResults', $event, index)"
+                v-text="label"
+            ></a>
+            <ExpandIcon
+                v-if="isMobile && !isMenuExpanded"
+                class="hidden"
+                v-on:click="$emit('expandMenu', $event)"
+            />
         </h3>
     </div>
 </template>
 
 <script>
+import ExpandIcon from './icons/ExpandIcon.vue'
 export default {
     name: 'ReelAnchor',
+    components: { ExpandIcon },
     props: {
         label: {
             type: String,
@@ -33,11 +48,17 @@ export default {
         contrast: {
             type: Boolean,
         },
+        isMobile: Boolean,
+        isMenuExpanded: Boolean,
     },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$greenGradient: linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%);
+.anchor.large {
+    display: block;
+}
 .anchor {
     position: relative;
     top: 0;
@@ -80,5 +101,40 @@ export default {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+}
+
+.expand {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .anchor.small {
+        display: none;
+    }
+    .anchor.small.selected {
+        display: block;
+        h3 {
+            svg {
+                display: block;
+            }
+        }
+    }
+    .anchor.expanded {
+        display: block;
+    }
+}
+
+.anchor.contrast {
+    h3 {
+        color: $blue;
+
+        .expand-icon {
+            filter: invert(9%) sepia(53%) saturate(1778%) hue-rotate(188deg)
+                brightness(99%) contrast(94%);
+        }
+    }
+}
+.anchor.contrast.selected {
+    background: $greenGradient;
 }
 </style>
