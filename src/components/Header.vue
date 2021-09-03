@@ -26,4 +26,9 @@ header {
     transition: top 0.2s linear;
     padding: 0 10%;
 }
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0 4%;
+    }
+}
 </style>
